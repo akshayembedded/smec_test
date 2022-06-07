@@ -1,0 +1,42 @@
+import openpyxl
+path ="Question 1.xlsx"
+wb_obj = openpyxl.load_workbook(path) 
+iter=0
+cities=0
+route=0
+# Get workbook active sheet object 
+# from the active attribute 
+sheet_obj = wb_obj.active
+i=1
+while  1:
+    cell_obj = sheet_obj.cell(row = i, column = 1) 
+    if(cell_obj.value=="Iteration No"):
+        c=2
+        while 1:
+            cell_obj = sheet_obj.cell(row = i, column = c) 
+            if(cell_obj.value==None):
+                cities=c-2
+                print("Number of cities :",c-2)
+                break
+            c+=1
+        break
+    i+=1
+j=i+1
+i=1
+while  1:
+    cell_obj = sheet_obj.cell(row = j, column = 1) 
+    if(cell_obj.value==None):
+        print("Number of iterations",i)
+        break
+    i+=1
+print("Maximum Treasures for Route 1")
+s=0
+sum=[]
+for r1 in range(j,i):
+    for c1 in range(2,c):
+        s+=sheet_obj.cell(row = r1, column = c1).value
+        print(sheet_obj.cell(row = r1, column = c1).value,end=" ")
+    print()
+
+sum.append(s)    
+
